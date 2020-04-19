@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trans-19 Homepage</title>
+</head>
+<body>
+<div style="text-align: center">
+    <h1>Trans-19</h1>
+</div>
+
+<h2>Patients</h2>
+<ul>
+    {% for patient in patient_list %}
+    <li>
+        <a href="{% url 'patient-details' patient.pk %}">
+            [{{ patient.case_number }}] {{ patient.name }}
+        </a>
+    </li>
+    {% empty %}
+    <li>No patient records yet.</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

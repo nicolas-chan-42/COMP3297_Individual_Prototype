@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trans-19 Patient Details</title>
+</head>
+<body>
+<div style="text-align: center">
+    <h1>Trans-19</h1>
+</div>
+
+<!------------------------------>
+<a href="{% url 'Homepage' %}"><- Back to Homepage</a>
+
+<!------------------------------>
+<p><h2>Patient Details of {{ patient.name }} [Case Number: {{ patient.case_number }}]</h2>
+Identity Document Number: {{ patient.id_number }} <br>
+Date of Birth: {{ patient.date_of_birth }} <br>
+Date Confirmed: {{ patient.date_confirmed }} <br>
+
+<!------------------------------>
+<hr>
+
+<!------------------------------>
+<p><h2>Patient's Visit Records</h2>
+<ul>
+    {% for visit in visit_list %}
+    <li>
+        {{ visit.location }} [<i>from</i> {{ visit.date_from }} <i>to</i> {{ visit.date_to }}]<br>
+        <p style="text-indent: 1%">Category: {{ visit.category }}
+        {% if visit.details %}
+        <p style="text-indent: 1%">Details: {{ visit.details }}
+        {% endif %}
+    </li>
+    {% empty %}
+    <li>No visit records.</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
